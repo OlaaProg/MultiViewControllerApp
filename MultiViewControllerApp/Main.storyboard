@@ -40,7 +40,7 @@
                             <outlet property="delegate" destination="224" id="228"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="First" id="225">
+                    <navigationItem key="navigationItem" title="Contacts" id="225">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="747" systemItem="add"/>
                     </navigationItem>
                     <connections>
@@ -68,7 +68,7 @@
         </scene>
         <scene sceneID="392">
             <objects>
-                <viewController id="393" sceneMemberID="viewController" customClass="SecondController" storyboardIdentifier="secondStoryboardId" useStoryboardIdentifierAsRestorationIdentifier="YES" title="Second ">
+                <viewController id="393" sceneMemberID="viewController" customClass="SecondController" storyboardIdentifier="secondStoryboardId" useStoryboardIdentifierAsRestorationIdentifier="YES" title="Contact">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="390"/>
                         <viewControllerLayoutGuide type="bottom" id="391"/>
@@ -78,31 +78,95 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="1466" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" placeholder="First name">
-                                <rect key="frame" x="94" y="128" width="225" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="1466" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" placeholder="Vorname">
+                                <rect key="frame" x="20" y="127" width="225" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1473" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                <rect key="frame" x="184" y="258" width="46" height="30"/>
+                                <rect key="frame" x="233" y="72" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
                                 <state key="normal" title="Save"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1481" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                <rect key="frame" x="164" y="308" width="85" height="30"/>
+                                <rect key="frame" x="294" y="72" width="85" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
                                 <state key="normal" title="Delete"/>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="1721" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" placeholder="Nachname">
+                                <rect key="frame" x="20" y="177" width="225" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="1722" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" placeholder="Straße">
+                                <rect key="frame" x="20" y="227" width="225" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="1723" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" placeholder="Ort">
+                                <rect key="frame" x="20" y="277" width="225" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="1724" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" placeholder="Telefonnummer">
+                                <rect key="frame" x="20" y="327" width="225" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="1725" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" placeholder="Hayndnummer">
+                                <rect key="frame" x="20" y="377" width="225" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="1726" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" placeholder="Email">
+                                <rect key="frame" x="20" y="427" width="225" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="1742" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" placeholder="PLZ">
+                                <rect key="frame" x="253" y="277" width="134" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="1743" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" placeholder="Hausnummer">
+                                <rect key="frame" x="253" y="227" width="134" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="txtFirstName" destination="1466" id="name-outlet-1466"/>
                         <outlet property="btnSave" destination="1473" id="name-outlet-1473"/>
                         <outlet property="btnDel" destination="1481" id="name-outlet-1481"/>
+                        <outlet property="txtSecondname" destination="1721" id="name-outlet-1721"/>
+                        <outlet property="txtStreet" destination="1722" id="name-outlet-1722"/>
+                        <outlet property="txtPlace" destination="1723" id="name-outlet-1723"/>
+                        <outlet property="txtTel" destination="1724" id="name-outlet-1724"/>
+                        <outlet property="txtMobil" destination="1725" id="name-outlet-1725"/>
+                        <outlet property="txtEmail" destination="1726" id="name-outlet-1726"/>
+                        <outlet property="txtPostcode" destination="1742" id="name-outlet-1742"/>
+                        <outlet property="txtHouseNumber" destination="1743" id="name-outlet-1743"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="395" userLabel="First Responder" sceneMemberID="firstResponder"/>

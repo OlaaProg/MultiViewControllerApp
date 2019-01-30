@@ -12,5 +12,13 @@ namespace MultiViewControllerApp
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
+        public string SecondName { get; set; }
+        public string Street { get; set; }
+        public string HausNumber { get; set; }
+        public string Place { get; set; }
+        public string Postcode { get; set; }
+        public string Phone { get; set; }
+        public string MobileNumber { get; set; }
+        public string Email { get; set; }
     }
 }

@@ -24,7 +24,39 @@ namespace MultiViewControllerApp
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextField txtEmail { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField txtFirstName { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextField txtHouseNumber { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextField txtMobil { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextField txtPlace { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextField txtPostcode { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextField txtSecondname { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextField txtStreet { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextField txtTel { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
@@ -38,9 +70,49 @@ namespace MultiViewControllerApp
                 btnSave = null;
             }
 
+            if (txtEmail != null) {
+                txtEmail.Dispose ();
+                txtEmail = null;
+            }
+
             if (txtFirstName != null) {
                 txtFirstName.Dispose ();
                 txtFirstName = null;
+            }
+
+            if (txtHouseNumber != null) {
+                txtHouseNumber.Dispose ();
+                txtHouseNumber = null;
+            }
+
+            if (txtMobil != null) {
+                txtMobil.Dispose ();
+                txtMobil = null;
+            }
+
+            if (txtPlace != null) {
+                txtPlace.Dispose ();
+                txtPlace = null;
+            }
+
+            if (txtPostcode != null) {
+                txtPostcode.Dispose ();
+                txtPostcode = null;
+            }
+
+            if (txtSecondname != null) {
+                txtSecondname.Dispose ();
+                txtSecondname = null;
+            }
+
+            if (txtStreet != null) {
+                txtStreet.Dispose ();
+                txtStreet = null;
+            }
+
+            if (txtTel != null) {
+                txtTel.Dispose ();
+                txtTel = null;
             }
         }
     }
