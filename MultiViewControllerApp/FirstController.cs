@@ -97,17 +97,13 @@ namespace MultiViewControllerApp
         #endregion
 
 
-
+        //todo: test it firstly
         #region Sqlite
         private void DataInit()
         {
             sqlitePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "MyTestContactsDB.db3");
             CreateSQLLiteDatabase(sqlitePath);
-
-            //Contact testContact = new Contact() { FirstName = "Olaa" };
-            //InsertData(sqlitePath, testContact);
-            //testContact = new Contact() { FirstName = "Aouss" };
-            //InsertData(sqlitePath, testContact);
+            
             QueryDate(sqlitePath);
         }
 
@@ -122,8 +118,13 @@ namespace MultiViewControllerApp
                     {
                         sqlcon.Open();
                         using (SqliteCommand sqlCom = new SqliteCommand(sqlcon))
-                        {
-                            sqlCom.CommandText = "CREATE TABLE TestContacts (ID INTEGER PRIMARY KEY, FirstName VARCHAR(20), SecondName VARCHAR(20), Street VARCHAR(20), Place VARCHAR(20), Phone VARCHAR(20), MobileNumber VARCHAR(20), Email)";
+                        {                            
+                            sqlCom.CommandText = "CREATE TABLE TestContacts (ID INTEGER PRIMARY KEY, FirstName VARCHAR(20), SecondName VARCHAR(20), Street VARCHAR(20), Place VARCHAR(20), Phone VARCHAR(20), MobileNumber VARCHAR(20), Email)";                            
+                            sqlCom.ExecuteNonQuery();
+                            
+                            //TODO: Test Insert Initial Contacts
+                            sqlCom.CommandText = "INSERT INTO TestContacts (FirstName, Phone) VALUES ('Polizei','110')";
+                            sqlCom.CommandText = "INSERT INTO TestContacts (FirstName, Phone) VALUES ('Feuerwehr und Rettungsdienst','112')";
                             sqlCom.ExecuteNonQuery();
                         }
                         sqlcon.Close();
@@ -143,7 +144,15 @@ namespace MultiViewControllerApp
         }
         //
         private void InsertData(string sDBFileName, Contact contact)
-        {            
+        {
+            int id = contact.Id;
+            string sFirstName = contact.FirstName;
+            string sLastName = contact.SecondName;
+            string sStreet = contact.Street + ", " + contact.HausNumber;
+            string sPlace = contact.Place + ", " + contact.Postcode;
+            string sPhone = contact.Phone;
+            string sMobileNumber = contact.MobileNumber;
+            string sEmail = contact.Email;
 
             try
             {
@@ -155,7 +164,10 @@ namespace MultiViewControllerApp
                         sqlcon.Open();
                         using (SqliteCommand sqlCom = new SqliteCommand(sqlcon))
                         {
-                            sqlCom.CommandText = String.Format("INSERT INTO TestContacts (FirstName ) VALUES ('{0}')", contact.FirstName);
+                            // sqlCom.CommandText = String.Format("INSERT INTO TestContacts (FirstName ) VALUES ('{0}','{1}')", contact.FirstName, contact.SecondName );
+                            //TODO: Test Insert a new Contact
+                            sqlCom.CommandText = "INSERT INTO  TestContacts  (FirstName, SecondName,Street,Place, Phone, MobileNumber,Email) VALUES ('sFirstName', 'sLastName', 'sStreet', 'sPlace', 'sPhone', 'sMobileNumber', 'sEmail') WHERE Id= id";
+
                             sqlCom.ExecuteNonQuery();
                         }
                         sqlcon.Close();
@@ -198,7 +210,7 @@ namespace MultiViewControllerApp
                                 {
                                     contacts.Add(new Contact()
                                     {
-                                        FirstName = dbReader["FirstName"].ToString(),
+                                        FirstName = string.Format("Firstname: {0}", dbReader["FirstName"]) ,
                                         SecondName = dbReader["SecondName"].ToString(),
                                         Street = dbReader["Street"].ToString(),
                                         Place = dbReader["Place"].ToString(),
@@ -227,10 +239,10 @@ namespace MultiViewControllerApp
 
         }
 
-
         //TODO: Update data in SQLite
         private void UpdateData(string sDBFileName, Contact contact)
         {
+            int id = contact.Id;
             string sFirstName = contact.FirstName;
             string sLastName = contact.SecondName;
             string sStreet = contact.Street + ", " + contact.HausNumber;
@@ -238,7 +250,6 @@ namespace MultiViewControllerApp
             string sPhone = contact.Phone;
             string sMobileNumber = contact.MobileNumber;
             string sEmail = contact.Email;
-
             if (sFirstName.Length == 0)
             {
                 Console.WriteLine("\nAngabe Vorname fehlt.");
@@ -249,7 +260,37 @@ namespace MultiViewControllerApp
                 Console.WriteLine("\nAngabe Nachname fehlt.");
                 return;
             }
-            //todo: sql 
+            //todo: update a contact 
+
+            try
+            {
+                if (File.Exists(sDBFileName))
+                {
+                    using (SqliteConnection sqlcon = new SqliteConnection(String.Format("Data Source = {0}", sDBFileName)))
+                    {
+                        sqlcon.Open();
+                        using (SqliteCommand sqlCom = new SqliteCommand(sqlcon))
+                        {
+                            Console.WriteLine("");
+                            Console.WriteLine("\nVorhandene Datenbankwerte der Tabelle: Contacts\n");
+                            //
+                            sqlCom.CommandText = "UPDATE TestContacts SET (FirstName, SecondName,Street,Place, Phone, MobileNumber,Email) VALUES ('sFirstName', 'sLastName', 'sStreet', 'sPlace', 'sPhone', 'sMobileNumber', 'sEmail') WHERE Id= id";
+                            sqlCom.ExecuteNonQuery();
+                        }
+                        sqlcon.Close();
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine("\nDatenbankdatei existiert nicht!");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(String.Format("\nSqlite error: {0}", ex.Message));
+            }
         }
         #endregion
 
