@@ -16,11 +16,27 @@ namespace MultiViewControllerApp
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton btn_CallTel { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton btnCall { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton btnDel { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton btnEmail { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton btnSave { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton btnSMS { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -60,14 +76,34 @@ namespace MultiViewControllerApp
 
         void ReleaseDesignerOutlets ()
         {
+            if (btn_CallTel != null) {
+                btn_CallTel.Dispose ();
+                btn_CallTel = null;
+            }
+
+            if (btnCall != null) {
+                btnCall.Dispose ();
+                btnCall = null;
+            }
+
             if (btnDel != null) {
                 btnDel.Dispose ();
                 btnDel = null;
             }
 
+            if (btnEmail != null) {
+                btnEmail.Dispose ();
+                btnEmail = null;
+            }
+
             if (btnSave != null) {
                 btnSave.Dispose ();
                 btnSave = null;
+            }
+
+            if (btnSMS != null) {
+                btnSMS.Dispose ();
+                btnSMS = null;
             }
 
             if (txtEmail != null) {

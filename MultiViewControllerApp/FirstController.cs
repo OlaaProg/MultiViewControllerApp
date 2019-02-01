@@ -31,13 +31,20 @@ namespace MultiViewControllerApp
             //sqlitManager = new DbManager();
             sqlitManager.DataInit();
             contacts = sqlitManager.QueryDate();
+            contacts = Sorting();
             btnAdd.Clicked += (sender, e) => CreateContact();
+            btnDeleteAll.TouchUpInside += (sender, e) =>
+             {
+                 DeleteAllContact();
+             };
+            
         }
 
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
            TableView.Source = new RootTableSource(contacts.ToArray());
+            NavigationController.Title = contacts.Count + " Contacts";
         }
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
@@ -57,22 +64,23 @@ namespace MultiViewControllerApp
         }
 
         #region save add delete Buttons
+
         public void SaveContact(Contact contact)
         {
             var oldContact = contacts.Find(t => t.Id == contact.Id);
 
             sqlitManager.UpdateData(contact);
+            contacts = Sorting();
+            TableView.Source = new RootTableSource(contacts.ToArray());
             NavigationController.PopViewController(true);
         }
         
 		public void DeleteAllContact()
-        {
-           
-            contacts.Clear();
-
-            sqlitManager.DeleteAllData();
-
-            NavigationController.PopViewController(true);
+        {                      
+            //sqlitManager.DeleteAllData();
+            //contacts= sqlitManager.QueryDate();
+            //contacts = Sorting();
+            //TableView.Source = new RootTableSource(contacts.ToArray());
         }
 
         public void DeleteContact(Contact contact)
@@ -94,12 +102,21 @@ namespace MultiViewControllerApp
             detail.SetItem(this, newContact);
 
             sqlitManager.InsertData(newContact);
+            contacts = Sorting();
+
+            TableView.Source = new RootTableSource(contacts.ToArray());
             NavigationController.PushViewController(detail, true);
         }
 
+        //Sorting according to the Firstname
+        public List<Contact> Sorting()
+        {
+            contacts.Sort((x, y) => String.Compare(x.FirstName, y.FirstName));
+            return contacts;
+        }
+       
         #endregion
-
-        
+       
       
 
     }

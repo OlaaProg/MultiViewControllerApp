@@ -17,18 +17,18 @@ namespace MultiViewControllerApp.Database
         #region Sqlite
         public void DataInit()
         {
-            sqlitePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "MyTestContactsDB.db3");
+            sqlitePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "MyContactsDB.db3");
             CreateSQLLiteDatabase(sqlitePath);
         }
 
-        public void CreateSQLLiteDatabase(string sDBFileName)
+        public void CreateSQLLiteDatabase(string sqlitePath)
         {
             try
             {
-                if (!File.Exists(sDBFileName))
+                if (!File.Exists(sqlitePath))
                 {
-                    SqliteConnection.CreateFile(sDBFileName);
-                    using (SqliteConnection sqlcon = new SqliteConnection(String.Format("Data Source = {0}", sDBFileName)))
+                    SqliteConnection.CreateFile(sqlitePath);
+                    using (SqliteConnection sqlcon = new SqliteConnection(String.Format("Data Source = {0}", sqlitePath)))
                     {
                         sqlcon.Open();
                         using (SqliteCommand sqlCom = new SqliteCommand(sqlcon))
@@ -56,7 +56,7 @@ namespace MultiViewControllerApp.Database
             }
             catch (Exception ex)
             {
-                Console.WriteLine(String.Format("\nSqlite error: {0}", ex.Message));
+                Console.WriteLine(String.Format("\nSqlite error Great SQLite Database: {0}", ex.Message));
             }
         }
         // TODO:Test Insert data in SQLite
@@ -93,6 +93,7 @@ namespace MultiViewControllerApp.Database
                 }
                 else
                 {
+                    CreateSQLLiteDatabase(sqlitePath);
                     Console.WriteLine("\nDatenbankdatei existiert nicht!");
 
                 }
@@ -100,7 +101,7 @@ namespace MultiViewControllerApp.Database
             }
             catch (Exception ex)
             {
-                Console.WriteLine(String.Format("\nSqlite error: {0}", ex.Message));
+                Console.WriteLine(String.Format("\nSqlite error Insert a Data: {0}", ex.Message));
             }
 
         }
@@ -150,15 +151,15 @@ namespace MultiViewControllerApp.Database
             }
             catch (Exception ex)
             {
-                Console.WriteLine(String.Format("\nSqlite error: {0}", ex.Message));
+                Console.WriteLine(String.Format("\nSqlite error Query the Data: {0}", ex.Message));
             }
             return contacts;
         }
 
         //TODO:Test Update data in SQLite
-        public void UpdateData( Contact contact)
+        public void UpdateData(Contact contact)
         {
-                  
+
             //todo: update a contact
 
             try
@@ -172,7 +173,7 @@ namespace MultiViewControllerApp.Database
                         {
                             Console.WriteLine("");
                             Console.WriteLine("\nVorhandene Datenbankwerte der Tabelle: Contacts\n");
-                            
+
                             sqlCom.CommandText = String.Format("UPDATE TestContacts" +
                                 " SET FirstName = '{0}', SecondName = '{1}', Street= '{2}' , Place= '{3}' , Phone= '{4}' , MobileNumber= '{5}' ,Email= '{6}' " +
                                 " WHERE Id = {7} ;",
@@ -193,16 +194,14 @@ namespace MultiViewControllerApp.Database
             }
             catch (Exception ex)
             {
-                Console.WriteLine(String.Format("\nSqlite error: {0}", ex.Message));
+                Console.WriteLine(String.Format("\nSqlite error Update one data: {0}", ex.Message));
             }
         }
 
         //TODO:Test Update data in SQLite
         public void DeleteData(int id)
-        {           
-            
+        {
             //todo: delte a contact 
-
             try
             {
                 if (File.Exists(sqlitePath))
@@ -215,7 +214,7 @@ namespace MultiViewControllerApp.Database
                             Console.WriteLine("");
                             Console.WriteLine("\nVorhandene Datenbankwerte der Tabelle: Contacts\n");
                             //
-                            sqlCom.CommandText = "DELETE FROM TestContacts  WHERE Id= " + id +"; ";
+                            sqlCom.CommandText = "DELETE FROM TestContacts  WHERE Id= " + id + "; ";
                             sqlCom.ExecuteNonQuery();
                         }
                         sqlcon.Close();
@@ -230,12 +229,47 @@ namespace MultiViewControllerApp.Database
             }
             catch (Exception ex)
             {
-                Console.WriteLine(String.Format("\nSqlite error: {0}", ex.Message));
+                Console.WriteLine(String.Format("\nSqlite error Delete one Data: {0}", ex.Message));
             }
         }
-       
+
         //TODO:Test delete all data in SQLite
         public void DeleteAllData()
+        {
+            //todo: delte all contacts 
+
+            try
+            {
+                if (File.Exists(sqlitePath))
+                {
+                    using (SqliteConnection sqlcon = new SqliteConnection(String.Format("Data Source = {0}", sqlitePath)))
+                    {
+                        sqlcon.Open();
+                        using (SqliteCommand sqlCom = new SqliteCommand(sqlcon))
+                        {
+                            Console.WriteLine("");
+                            Console.WriteLine("\nVorhandene Datenbankwerte der Tabelle: Contacts\n");
+                            //
+                            sqlCom.CommandText = "DELETE FROM TestContacts";
+                            sqlCom.ExecuteNonQuery();
+                        }
+                        sqlcon.Close();
+                    }
+                    Console.WriteLine("\n===================Datenbankdatei delete ist geklappt!===============================");
+                }
+                else
+                {
+                    Console.WriteLine("\nDatenbankdatei existiert nicht!");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(String.Format("\nSqlite error  Delete All Data: {0}", ex.Message));
+            }
+        }
+
+        public void DeleteFileData()
         {
             if (File.Exists(sqlitePath) == true)
             {

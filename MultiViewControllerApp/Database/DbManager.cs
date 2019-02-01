@@ -10,7 +10,7 @@ using UIKit;
 
 namespace MultiViewControllerApp.Database
 {
-    //Todo: test it secondly
+    //Todo: test it secondly: dose not work, the insert dosenot work
     public class DbManager
     {
         List<Contact> contacts;
@@ -29,8 +29,11 @@ namespace MultiViewControllerApp.Database
             
             //TODO:Test Erstellen einer leeren Datenbank
             var db = new SQLiteConnection(dbPath);
-            if (db.Table<Contact>() == null)
+            
+
+            if (db.Table<Contact>() == null || db.Table<Contact>().Count()==0)
             {
+               
                 //Speichern von Daten
                 db.CreateTable<Contact>();
 

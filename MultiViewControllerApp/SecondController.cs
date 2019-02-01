@@ -37,6 +37,30 @@ namespace MultiViewControllerApp
                 HideKeyboard();
                 Delegate.DeleteContact(CurrentContact);
             };
+
+            btn_CallTel.TouchUpInside += (sender, e) =>
+             {
+                 HideKeyboard();
+                 Call(txtTel.Text);
+             };
+
+            btnCall.TouchUpInside += (sender, e) =>
+             {
+                 HideKeyboard();
+                 Call(txtMobil.Text);
+             };
+
+            btnSMS.TouchUpInside += (sender, e) =>
+            {
+                HideKeyboard();
+                SendSMS(txtMobil.Text);
+            };
+
+            btnEmail.TouchUpInside += (sender, e) =>
+            {
+                HideKeyboard();
+                SendEmail(txtEmail.Text);
+            };
         }
 
         public override void ViewWillAppear(bool animated)
@@ -55,13 +79,13 @@ namespace MultiViewControllerApp
 
         internal void SetItem(FirstController firstController, Contact item)
         {
-            Delegate=firstController;
+            Delegate = firstController;
             CurrentContact = item;
         }
 
         #region Hilfe Methoden und Func
 
-        public void HideKeyboard()
+        private void HideKeyboard()
         {
             txtFirstName.ResignFirstResponder();
             txtSecondname.ResignFirstResponder();
@@ -76,6 +100,65 @@ namespace MultiViewControllerApp
 
         }
 
+        private void Call(string callNumber)
+        {
+            NSUrl url = new NSUrl("tel:+123456789012");
+
+            if (callNumber.Length == 12)
+            { url = new NSUrl("tel:+" + callNumber); }
+
+            if (UIApplication.SharedApplication.CanOpenUrl(url))
+            {
+                UIApplication.SharedApplication.OpenUrl(url);
+            }
+            else
+            {
+                Console.WriteLine("Cannot opern url: {0}", url.AbsoluteString);
+                var alert = UIAlertController.Create("Not supported! \n:(", "Scheme 'tel:' is not supported on the device", UIAlertControllerStyle.Alert);
+                alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+                PresentViewController(alert, true, null);
+            }
+        }
+
+        private void SendSMS(string callNumber)
+        {
+            NSUrl url = new NSUrl("sms:+123456789012");
+
+            if (callNumber.Length == 12)
+            { url = new NSUrl("sms:+" + callNumber); }
+
+            if (UIApplication.SharedApplication.CanOpenUrl(url))
+            {
+                UIApplication.SharedApplication.OpenUrl(url);
+            }
+            else
+            {
+                Console.WriteLine("Cannot opern url: {0}", url.AbsoluteString);
+                var alert = UIAlertController.Create("Not supported! \n:(", "Scheme 'sms:' is not supported on the device", UIAlertControllerStyle.Alert);
+                alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+                PresentViewController(alert, true, null);
+            }
+        }
+
+        private void SendEmail(string email)
+        {
+            NSUrl url = new NSUrl("mailto:mail@example.com");
+
+            if (email.Length == 12)
+            { url = new NSUrl("mailto:" + email); }
+
+            if (UIApplication.SharedApplication.CanOpenUrl(url))
+            {
+                UIApplication.SharedApplication.OpenUrl(url);
+            }
+            else
+            {
+                Console.WriteLine("Cannot opern url: {0}", url.AbsoluteString);
+                var alert = UIAlertController.Create("Not supported! \n:(", "Scheme 'mailto:' is not supported on the device", UIAlertControllerStyle.Alert);
+                alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+                PresentViewController(alert, true, null);
+            }
+        }
         #endregion
     }
 }

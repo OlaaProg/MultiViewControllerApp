@@ -14,7 +14,7 @@ namespace MultiViewControllerApp
         string cellIdentifier = "contactCellId";
 
         public RootTableSource(Contact[] items)
-        {
+        {           
             tableItems = items;
         }
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)

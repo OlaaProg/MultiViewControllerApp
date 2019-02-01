@@ -18,11 +18,20 @@ namespace MultiViewControllerApp
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIBarButtonItem btnAdd { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton btnDeleteAll { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
             if (btnAdd != null) {
                 btnAdd.Dispose ();
                 btnAdd = null;
+            }
+
+            if (btnDeleteAll != null) {
+                btnDeleteAll.Dispose ();
+                btnDeleteAll = null;
             }
         }
     }
