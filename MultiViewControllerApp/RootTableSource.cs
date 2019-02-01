@@ -20,7 +20,7 @@ namespace MultiViewControllerApp
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             var cell = tableView.DequeueReusableCell(cellIdentifier);
-            cell.TextLabel.Text = tableItems[indexPath.Row].FirstName;
+            cell.TextLabel.Text = tableItems[indexPath.Row].FirstName +", " + tableItems[indexPath.Row].SecondName;
             return cell;
         }
 

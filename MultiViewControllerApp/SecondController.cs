@@ -19,6 +19,15 @@ namespace MultiViewControllerApp
             btnSave.TouchUpInside += (sender, e) =>
              {
                  CurrentContact.FirstName = txtFirstName.Text;
+                 CurrentContact.SecondName = txtSecondname.Text;
+                 CurrentContact.Street = txtStreet.Text;
+                 CurrentContact.HausNumber = txtHouseNumber.Text;
+                 CurrentContact.Place = txtPlace.Text;
+                 CurrentContact.Postcode = txtPostcode.Text;
+                 CurrentContact.Phone = txtTel.Text;
+                 CurrentContact.MobileNumber = txtMobil.Text;
+                 CurrentContact.Email = txtEmail.Text;
+
                  HideKeyboard();
                  Delegate.SaveContact(CurrentContact);
              };
@@ -34,6 +43,13 @@ namespace MultiViewControllerApp
         {
             base.ViewWillAppear(animated);
             txtFirstName.Text = CurrentContact.FirstName;
+            txtSecondname.Text = CurrentContact.SecondName;
+            txtHouseNumber.Text = CurrentContact.HausNumber;
+            txtStreet.Text = CurrentContact.Street;
+            txtPlace.Text = CurrentContact.Place;
+            txtPostcode.Text = CurrentContact.Postcode;
+            txtTel.Text = CurrentContact.Phone;
+            txtMobil.Text = CurrentContact.MobileNumber;
 
         }
 

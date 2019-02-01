@@ -141,6 +141,7 @@
   <ItemGroup>
     <Compile Include="Contact.cs" />
     <Compile Include="Database\DbManager.cs" />
+    <Compile Include="Database\SqlitManager.cs" />
     <Compile Include="FirstController.cs" />
     <Compile Include="FirstController.designer.cs">
       <DependentUpon>FirstController.cs</DependentUpon>
